@@ -1,6 +1,6 @@
 {
   "name": "wfilestransformers",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "engine": "node >= 6.0.0",
   "description": "Collection of files transformers",
   "license": "MIT",

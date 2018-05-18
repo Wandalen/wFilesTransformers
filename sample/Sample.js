@@ -1,9 +1,5 @@
 
-if( typeof module !== 'undefined' )
-{
-  require( 'wTools' );
-}
-
+var transformers = require( 'wfiletransformers' );
 var _ = wTools;
 
-/**/
+console.log( 'transformers',transformers );

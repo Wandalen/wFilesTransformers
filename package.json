@@ -1,33 +1,19 @@
 {
-  "name": "wFiles",
-  "version": "0.5.137",
+  "name": "wfilestransformers",
+  "version": "0.3.0",
   "engine": "node >= 6.0.0",
-  "description": "Files manipulation library of middle level.",
+  "description": "Collection of files transformers",
   "license": "MIT",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
       "email": "wtory.net@domainsbyproxy.com>"
-    },
-    {
-      "name": "Ihor Ostash",
-      "email": "iostashvxi@gmail.com"
-    },
-    {
-      "name": "Volodymyr M.",
-      "email": "volodymyr.migdal@gmail.com"
     }
   ],
-  "main": "staging/dwtools/amid/file/FileTop.s",
+  "main": "staging/dwtools/amid/file/FilesTransformers.s",
   "files": [
-    "staging/dwtools/amid/file/base",
-    "staging/dwtools/amid/file/fprovider",
-    "staging/dwtools/amid/file/hfilter",
-    "staging/dwtools/amid/file/FileBase.s",
-    "staging/dwtools/amid/file/FileMid.s",
-    "staging/dwtools/amid/file/FilesRoutines.ss",
-    "staging/dwtools/amid/file/FileTop.s",
+    "staging/dwtools/amid/file",
     "production"
   ],
   "scripts": {
@@ -36,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wandalen/wFiles.git"
+    "url": "https://github.com/Wandalen/wFilesTransformers.git"
   },
   "bugs": {
-    "url": "https://github.com/Wandalen/wFiles/issues"
+    "url": "https://github.com/Wandalen/wFilesTransformers/issues"
   },
   "dependencies": {
     "wTools": "",
@@ -54,11 +40,13 @@
     "wTesting": "",
     "typedarray-to-buffer": "",
     "cli-table2": "",
-    "wFiles": "."
+    "wfilestransformers": "."
   },
   "keywords": [
     "wTools",
     "wFiles",
+    "wFilesTransformers",
+    "Files transformers",
     "file",
     "read file",
     "write file"

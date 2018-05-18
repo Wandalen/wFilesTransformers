@@ -29,12 +29,7 @@
   },
   "dependencies": {
     "wTools": "",
-    "wConsequence": "",
-    "wProto": "",
-    "wPath": "",
-    "wfieldsstack": "",
-    "wRegexpObject": "",
-    "fs-extra": ""
+    "wFiles": ""
   },
   "devDependencies": {
     "wTesting": "",

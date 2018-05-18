@@ -1,4 +1,5 @@
 
+var transformers = require( '..' );
 var transformers = require( 'wfiletransformers' );
 var _ = wTools;
 

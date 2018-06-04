@@ -89,7 +89,6 @@ encoders[ 'yaml' ] =
   onBegin : function( e )
   {
     _.assert( e.transaction.encoding === 'yaml' );
-    debugger;
     e.transaction.encoding = 'utf8';
   },
 
@@ -97,7 +96,6 @@ encoders[ 'yaml' ] =
   {
     if( !_.strIs( e.data ) )
     throw _.err( '( fileRead.encoders.coffee.onEnd ) expects string' );
-    debugger;
     var result = Yaml.load( e.data,{ filename : e.transaction.filePath } );
     return result;
   },

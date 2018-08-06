@@ -2,6 +2,14 @@
 
 'use strict';
 
+/**
+  @module Tools/mid/files/FilesTransformers - Collection of files transformers for Files module. Use it to read configs in different formats.
+*/
+
+/**
+ * @file files/FilesTransformers.s.
+ */
+
 if( typeof module === 'undefined' )
 return;
 

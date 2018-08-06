@@ -2,13 +2,13 @@
   "name": "wfilestransformers",
   "version": "0.3.15",
   "engine": "node >= 6.0.0",
-  "description": "Collection of files transformers",
+  "description": "Collection of files transformers for Files module. Use it to read configs in different formats.",
   "license": "MIT",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
-      "email": "wanalen@willbe.so>"
+      "email": "wanalen@willbe.so"
     }
   ],
   "main": "staging/dwtools/amid/file/FilesTransformers.s",

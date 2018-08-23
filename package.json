@@ -11,7 +11,7 @@
       "email": "wanalen@willbe.so"
     }
   ],
-  "main": "staging/dwtools/amid/files/alayer2/FilesTransformers.s",
+  "main": "staging/dwtools/amid/files/l9/FilesTransformers.s",
   "files": [
     "staging/dwtools/amid/files",
     "production"

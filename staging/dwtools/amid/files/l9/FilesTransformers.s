@@ -41,6 +41,10 @@ var _global = _global_;
 var _ = _global_.wTools;
 var encoders = _.FileProvider.Partial.prototype.fileRead.encoders;
 
+/*
+and writing encoders
+*/
+
 // --
 //
 // --
@@ -62,16 +66,14 @@ encoders[ 'coffee' ] =
 
   onBegin : function( e )
   {
-    _.assert( e.transaction.encoding === 'coffee' );
-    e.transaction.encoding = 'utf8';
+    _.assert( e.operation.encoding === 'coffee' );
+    e.operation.encoding = 'utf8';
   },
 
   onEnd : function( e )
   {
-    if( !_.strIs( e.data ) )
-    throw _.err( '( fileRead.encoders.coffee.onEnd ) expects string' );
-    var result = Coffee.eval( e.data,{ filename : e.transaction.filePath } );
-    return result;
+    _.assert( _.strIs( e.data ), '( fileRead.encoders.coffee.onEnd ) expects string' );
+    e.data = Coffee.eval( e.data, { filename : e.operation.filePath } );
   },
 
 }
@@ -96,16 +98,15 @@ encoders[ 'yaml' ] =
 
   onBegin : function( e )
   {
-    _.assert( e.transaction.encoding === 'yaml' );
-    e.transaction.encoding = 'utf8';
+    _.assert( e.operation.encoding === 'yaml' );
+    e.operation.encoding = 'utf8';
   },
 
   onEnd : function( e )
   {
-    if( !_.strIs( e.data ) )
-    throw _.err( '( fileRead.encoders.coffee.onEnd ) expects string' );
-    var result = Yaml.load( e.data,{ filename : e.transaction.filePath } );
-    return result;
+    debugger;
+    _.assert( _.strIs( e.data ), '( fileRead.encoders.coffee.onEnd ) expects string' );
+    e.data = Yaml.load( e.data,{ filename : e.operation.filePath } );
   },
 
 }

@@ -31,15 +31,16 @@ if( typeof module !== 'undefined' )
     if( !toolsExternal )
     require( toolsPath );
   }
-  var _global = _global_;
-  var _ = _global_.wTools;
+
+  let _ = _global_.wTools;
 
   _.include( 'wFiles' );
 
 }
-var _global = _global_;
-var _ = _global_.wTools;
-var encoders = _.FileProvider.Partial.prototype.fileRead.encoders;
+
+let _global = _global_;
+let _ = _global_.wTools;
+let encoders = _.FileProvider.Partial.prototype.fileRead.encoders;
 
 /*
 and writing encoders
@@ -49,9 +50,10 @@ and writing encoders
 //
 // --
 
+let Coffee;
 try
 {
-  var Coffee = require( 'coffee-script' );
+  Coffee = require( 'coffee-script' );
 }
 catch( err )
 {
@@ -81,9 +83,10 @@ encoders[ 'coffee' ] =
 
 //
 
+let Yaml;
 try
 {
-  var Yaml = require( 'js-yaml' );
+  Yaml = require( 'js-yaml' );
 }
 catch( err )
 {
@@ -104,9 +107,16 @@ encoders[ 'yaml' ] =
 
   onEnd : function( e )
   {
-    debugger;
     _.assert( _.strIs( e.data ), '( fileRead.encoders.coffee.onEnd ) expects string' );
-    e.data = Yaml.load( e.data,{ filename : e.operation.filePath } );
+    try
+    {
+      e.data = Yaml.load( e.data,{ filename : e.operation.filePath } );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
   },
 
 }
@@ -115,7 +125,7 @@ encoders[ 'yaml' ] =
 // export
 // --
 
-var Self = wTools.FileTransformers = encoders;
+let Self = wTools.FileTransformers = encoders;
 
 if( typeof module !== 'undefined' )
 if( _global_.WTOOLS_PRIVATE )

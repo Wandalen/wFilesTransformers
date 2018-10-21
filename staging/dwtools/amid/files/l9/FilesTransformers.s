@@ -40,11 +40,8 @@ if( typeof module !== 'undefined' )
 
 let _global = _global_;
 let _ = _global_.wTools;
-let encoders = _.FileProvider.Partial.prototype.fileRead.encoders;
-
-/*
-and writing encoders
-*/
+let ReadEncoders = _.FileProvider.Partial.prototype.fileRead.encoders;
+let WriteEncoders = _.FileProvider.Partial.prototype.fileWrite.encoders;
 
 // --
 //
@@ -60,7 +57,7 @@ catch( err )
 }
 
 if( Coffee )
-encoders[ 'coffee' ] =
+ReadEncoders[ 'coffee' ] =
 {
 
   exts : [ 'coffee' ],
@@ -74,12 +71,47 @@ encoders[ 'coffee' ] =
 
   onEnd : function( e )
   {
-    _.assert( _.strIs( e.data ), '( fileRead.encoders.coffee.onEnd ) expects string' );
+    _.assert( _.strIs( e.data ), '( fileRead.ReadEncoders.coffee.onEnd ) expects string' );
     e.data = Coffee.eval( e.data, { filename : e.operation.filePath } );
   },
 
 }
 
+let Js2coffee;
+try
+{
+  Js2coffee = require( 'js2coffee' );
+}
+catch( err )
+{
+}
+
+/* qqq : does not work, find solution */
+
+if( Js2coffee )
+WriteEncoders[ 'coffee' ] =
+{
+
+  exts : [ 'coffee' ],
+
+  onBegin : function( e )
+  {
+    debugger;
+    _.assert( e.operation.encoding === 'coffee' );
+    try
+    {
+      e.operation.data = Js2coffee( JSON.stringify( e.operation.data ) );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
+    e.operation.encoding = 'utf8';
+    debugger;
+  },
+
+}
 
 //
 
@@ -93,7 +125,7 @@ catch( err )
 }
 
 if( Yaml )
-encoders[ 'yaml' ] =
+ReadEncoders[ 'yaml' ] =
 {
 
   exts : [ 'yaml','yml' ],
@@ -107,7 +139,7 @@ encoders[ 'yaml' ] =
 
   onEnd : function( e )
   {
-    _.assert( _.strIs( e.data ), '( fileRead.encoders.coffee.onEnd ) expects string' );
+    _.assert( _.strIs( e.data ), '( fileRead.ReadEncoders.coffee.onEnd ) expects string' );
     try
     {
       e.data = Yaml.load( e.data,{ filename : e.operation.filePath } );
@@ -121,11 +153,34 @@ encoders[ 'yaml' ] =
 
 }
 
+if( Yaml )
+WriteEncoders[ 'yaml' ] =
+{
+
+  exts : [ 'yaml','yml' ],
+
+  onBegin : function( e )
+  {
+    _.assert( e.operation.encoding === 'yaml' );
+    try
+    {
+      e.operation.data = Yaml.dump( e.operation.data );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
+    e.operation.encoding = 'utf8';
+  },
+
+}
+
 // --
 // export
 // --
 
-let Self = wTools.FileTransformers = encoders;
+let Self = wTools.FileTransformers = ReadEncoders;
 
 if( typeof module !== 'undefined' )
 if( _global_.WTOOLS_PRIVATE )

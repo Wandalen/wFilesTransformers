@@ -1,6 +1,6 @@
 {
   "name": "wfilestransformers",
-  "version": "0.3.28",
+  "version": "0.3.29",
   "engine": "node >= 6.0.0",
   "description": "Collection of files transformers for Files module. Use it to read configs in different formats.",
   "license": "MIT",
@@ -14,7 +14,8 @@
   "main": "proto/dwtools/amid/files/l9/FilesTransformers.s",
   "files": [
     "proto/dwtools/amid/files",
-    "proto/dwtools/Tools.s", "production"
+    "proto/dwtools/Tools.s",
+    "production"
   ],
   "scripts": {
     "test": "wtest staging",

@@ -31,30 +31,33 @@ if( typeof module !== 'undefined' )
     if( !toolsExternal )
     require( toolsPath );
   }
-  var _global = _global_;
-  var _ = _global_.wTools;
+
+  let _ = _global_.wTools;
 
   _.include( 'wFiles' );
 
 }
-var _global = _global_;
-var _ = _global_.wTools;
-var encoders = _.FileProvider.Partial.prototype.fileRead.encoders;
+
+let _global = _global_;
+let _ = _global_.wTools;
+let ReadEncoders = _.FileProvider.Partial.prototype.fileRead.encoders;
+let WriteEncoders = _.FileProvider.Partial.prototype.fileWrite.encoders;
 
 // --
 //
 // --
 
+let Coffee;
 try
 {
-  var Coffee = require( 'coffee-script' );
+  Coffee = require( 'coffee-script' );
 }
 catch( err )
 {
 }
 
 if( Coffee )
-encoders[ 'coffee' ] =
+ReadEncoders[ 'coffee' ] =
 {
 
   exts : [ 'coffee' ],
@@ -62,33 +65,67 @@ encoders[ 'coffee' ] =
 
   onBegin : function( e )
   {
-    _.assert( e.transaction.encoding === 'coffee' );
-    e.transaction.encoding = 'utf8';
+    _.assert( e.operation.encoding === 'coffee' );
+    e.operation.encoding = 'utf8';
   },
 
   onEnd : function( e )
   {
-    if( !_.strIs( e.data ) )
-    throw _.err( '( fileRead.encoders.coffee.onEnd ) expects string' );
-    var result = Coffee.eval( e.data,{ filename : e.transaction.filePath } );
-    return result;
+    _.assert( _.strIs( e.data ), '( fileRead.ReadEncoders.coffee.onEnd ) expects string' );
+    e.data = Coffee.eval( e.data, { filename : e.operation.filePath } );
   },
 
 }
 
+let Js2coffee;
+try
+{
+  Js2coffee = require( 'js2coffee' );
+}
+catch( err )
+{
+}
+
+/* qqq : does not work, find solution */
+
+if( Js2coffee )
+WriteEncoders[ 'coffee' ] =
+{
+
+  exts : [ 'coffee' ],
+
+  onBegin : function( e )
+  {
+    debugger;
+    _.assert( e.operation.encoding === 'coffee' );
+    try
+    {
+      e.operation.data = Js2coffee( JSON.stringify( e.operation.data ) );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
+    e.operation.encoding = 'utf8';
+    debugger;
+  },
+
+}
 
 //
 
+let Yaml;
 try
 {
-  var Yaml = require( 'js-yaml' );
+  Yaml = require( 'js-yaml' );
 }
 catch( err )
 {
 }
 
 if( Yaml )
-encoders[ 'yaml' ] =
+ReadEncoders[ 'yaml' ] =
 {
 
   exts : [ 'yaml','yml' ],
@@ -96,16 +133,45 @@ encoders[ 'yaml' ] =
 
   onBegin : function( e )
   {
-    _.assert( e.transaction.encoding === 'yaml' );
-    e.transaction.encoding = 'utf8';
+    _.assert( e.operation.encoding === 'yaml' );
+    e.operation.encoding = 'utf8';
   },
 
   onEnd : function( e )
   {
-    if( !_.strIs( e.data ) )
-    throw _.err( '( fileRead.encoders.coffee.onEnd ) expects string' );
-    var result = Yaml.load( e.data,{ filename : e.transaction.filePath } );
-    return result;
+    _.assert( _.strIs( e.data ), '( fileRead.ReadEncoders.coffee.onEnd ) expects string' );
+    try
+    {
+      e.data = Yaml.load( e.data,{ filename : e.operation.filePath } );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
+  },
+
+}
+
+if( Yaml )
+WriteEncoders[ 'yaml' ] =
+{
+
+  exts : [ 'yaml','yml' ],
+
+  onBegin : function( e )
+  {
+    _.assert( e.operation.encoding === 'yaml' );
+    try
+    {
+      e.operation.data = Yaml.dump( e.operation.data );
+    }
+    catch( err )
+    {
+      debugger;
+      throw _.err( err );
+    }
+    e.operation.encoding = 'utf8';
   },
 
 }
@@ -114,7 +180,7 @@ encoders[ 'yaml' ] =
 // export
 // --
 
-var Self = wTools.FileTransformers = encoders;
+let Self = wTools.FileTransformers = ReadEncoders;
 
 if( typeof module !== 'undefined' )
 if( _global_.WTOOLS_PRIVATE )

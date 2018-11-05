@@ -11,14 +11,14 @@
       "email": "wanalen@willbe.so"
     }
   ],
-  "main": "staging/dwtools/amid/files/l9/FilesTransformers.s",
+  "main": "proto/dwtools/amid/files/l9/FilesTransformers.s",
   "files": [
-    "staging/dwtools/amid/files",
+    "proto/dwtools/amid/files",
     "production"
   ],
   "scripts": {
     "test": "wtest staging",
-    "make_doc": "./doc.sh"
+    "docgen": "wdocgen proto"
   },
   "repository": {
     "type": "git",

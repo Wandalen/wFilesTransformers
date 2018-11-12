@@ -11,7 +11,7 @@
       "email": "wanalen@willbe.so"
     }
   ],
-  "main": "proto/dwtools/amid/files/l2/EncodersExtended.s",
+  "main": "proto/dwtools/amid/files/l1/EncodersExtended.s",
   "files": [
     "proto/dwtools/amid/files",
     "proto/dwtools/Tools.s",

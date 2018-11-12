@@ -51,7 +51,7 @@ readCoffee =
 
   onBegin : function( e )
   {
-    _.assert( e.operation.encoding === 'coffee' );
+    _.assert( e.operation.encoding === 'coffee' || e.operation.encoding === 'cson' );
     e.operation.encoding = 'utf8';
   },
 
@@ -84,7 +84,7 @@ writeCoffee =
   onBegin : function( e )
   {
     debugger;
-    _.assert( e.operation.encoding === 'coffee' );
+    _.assert( e.operation.encoding === 'coffee' || e.operation.encoding === 'cson' );
     try
     {
       e.operation.data = Js2coffee( JSON.stringify( e.operation.data ) );

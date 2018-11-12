@@ -11,7 +11,7 @@
       "email": "wanalen@willbe.so"
     }
   ],
-  "main": "proto/dwtools/amid/files/l9/FilesTransformers.s",
+  "main": "proto/dwtools/amid/files/l2/EncodersExtended.s",
   "files": [
     "proto/dwtools/amid/files",
     "proto/dwtools/Tools.s",
@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "wTools": "",
-    "wFiles": ""
+    "wFiles": "",
+    "coffee-script" : ""
   },
   "devDependencies": {
     "wTesting": "",

@@ -31,12 +31,12 @@
   "dependencies": {
     "wTools": "",
     "wFiles": "",
-    "coffee-script": ""
+    "coffee-script": "",
+    "js2coffee": "",
+    "js-yaml": ""
   },
   "devDependencies": {
     "wTesting": "",
-    "typedarray-to-buffer": "",
-    "cli-table2": "",
     "wfilestransformers": "."
   },
   "keywords": [

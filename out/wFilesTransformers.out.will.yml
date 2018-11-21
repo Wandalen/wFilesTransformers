@@ -4,7 +4,7 @@ about:
   description: >-
     Collection of files transformers for Files module. Use it to read configs in
     different formats.
-  version: 0.3.36
+  version: 0.3.37
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -267,7 +267,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.36
+    version: 0.3.37
     criterion:
       default: 1
       debug: 1

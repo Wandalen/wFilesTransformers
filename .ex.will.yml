@@ -1,9 +1,9 @@
 
 about :
 
-  name : wFilesTransformers
-  description : 'Collection of files transformers for Files module. Use it to read configs in different formats.'
-  version : 0.3.37
+  name : "wFilesTransformers"
+  description : "Collection of files transformers for Files module. Use it to read configs in different formats."
+  version : "0.3.38"
   enabled : 1
   interpreters :
   - nodejs >= 6.0.0

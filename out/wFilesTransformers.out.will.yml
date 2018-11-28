@@ -160,8 +160,8 @@ reflector:
       ./dwtools/Tools.s: true
       ./dwtools/amid/files/l1/EncodersExtended.s: true
     srcFilter:
-      basePath: ./proto
-      prefixPath: .
+      basePath: .
+      prefixPath: proto
     dstFilter:
       basePath: .
       prefixPath: .
